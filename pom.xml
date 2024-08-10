@@ -16,7 +16,13 @@
     </properties>
     <modules>
         <module>EurekaServer</module>
+        <module>ApiGateway</module>
+        <module>OrderService</module>
+        <module>RestaurantService</module>
+        <module>PaymentService</module>
+        <module>common</module>
     </modules>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
