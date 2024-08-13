@@ -27,5 +27,4 @@ public class RestService {
     repository.save(RestOrder.builder().orderId(event.getOrderId()).items(event.getItems()).build());
     kafkaTemplate.send("rest", 2, String.valueOf(event.getOrderId()), ResponseEvent.builder().success(true).orderId(event.getOrderId()).build());
   }
-
 }
