@@ -1,5 +1,6 @@
 package kirilloff.paymentservice.service;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import kirilloff.common.event.PaymentEvent;
 import kirilloff.common.event.ResponseEvent;
 import kirilloff.paymentservice.model.Payment;
@@ -19,6 +20,7 @@ public class PaymentService {
   private final PaymentRepository paymentRepository;
   private final KafkaTemplate<String, ResponseEvent> kafkaTemplate;
 
+  @CircuitBreaker(name = "paymentServiceToOrderCircuitBreaker")
   @KafkaListener(topicPartitions = @TopicPartition(topic = "payment", partitions = "1"), containerFactory = "kafkaListenerContainerFactory")
   public void eventListener(PaymentEvent event) {
     log.info("Received payment event: {}", event);
@@ -30,5 +32,4 @@ public class PaymentService {
       paymentRepository.save(Payment.builder().userId(event.getUserId()).cost(event.getCost()).build());
     }
   }
-
 }

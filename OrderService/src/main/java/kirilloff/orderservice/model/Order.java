@@ -2,7 +2,6 @@
 package kirilloff.orderservice.model;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -15,8 +14,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
 
 @Builder
 @AllArgsConstructor
@@ -44,6 +41,4 @@ public class Order {
   @Enumerated(EnumType.STRING)
   @Column(name = "status")
   private Status status;
-
-  @ElementCollection
 }

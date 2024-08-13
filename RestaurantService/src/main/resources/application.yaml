@@ -20,3 +20,22 @@ spring:
 
 server:
   port: 8084
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8081/eureka
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      restServiceToOrderCircuitBreaker:
+        waitDurationInOpenState: 5000ms
+        #Время ожидания в открытом состоянии
+        failureRateThreshold: 50
+        #процент ошибок
+        eventConsumerBufferSize: 10
+        #количество событий, которые будут храниться в памяти
+        recordExceptions:
+          - org.apache.kafka.common.errors.TimeoutException
+          - java.io.IOException

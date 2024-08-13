@@ -77,8 +77,8 @@ public class KafkaConfiguration {
   @Bean
   public NewTopic restTopic() {
     return TopicBuilder.name("rest")
-        .partitions(5)
-        .replicas(3)
+        .partitions(3)
+        .replicas(2)
         .compact()
         .build();
   }
@@ -86,8 +86,8 @@ public class KafkaConfiguration {
   @Bean
   public NewTopic paymentTopic() {
     return TopicBuilder.name("payment")
-        .partitions(5)
-        .replicas(3)
+        .partitions(3)
+        .replicas(2)
         .compact()
         .build();
   }
